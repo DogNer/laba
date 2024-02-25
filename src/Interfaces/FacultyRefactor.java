@@ -6,5 +6,4 @@ public interface FacultyRefactor {
      void addFaculty(Faculty el);
      void remove(int pos);
      void changeName(int pos, String newName);
-     String toString();
 }
