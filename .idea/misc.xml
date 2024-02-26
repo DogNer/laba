@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="graalvm-jdk-17" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager">
+>>>>>>> 2c4718e (Изменения в иерархии классов. Можно добавлять факультеты и кафедры)
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
