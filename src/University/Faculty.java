@@ -8,11 +8,12 @@ import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.List;
 
-public class Faculty implements KafedraRefactor {
+public class Faculty implements FacultyRefactor{
 
     private String nameFaculty = "";
     private String nameOfDecan = "";
-    public List<Kafedra> arrKafedra = new ArrList<>();
+    private List<Faculty> arrFaculty = new ArrList<>();
+    private int id;
 
     public Faculty(String nameFaculty, String nameOfDecan) {
         this.nameFaculty = nameFaculty;
@@ -22,8 +23,16 @@ public class Faculty implements KafedraRefactor {
     public Faculty() {
     }
 
+    public List<Faculty> getArrFaculty() {
+        return arrFaculty;
+    }
+
+    public void setArrFaculty(List<Faculty> arrFaculty) {
+        this.arrFaculty = arrFaculty;
+    }
+
     public int getNumberOfKafedra() {
-        return arrKafedra.size();
+        return arrFaculty.size();
     }
 
     public String getNameFaculty() {
@@ -42,19 +51,36 @@ public class Faculty implements KafedraRefactor {
         this.nameOfDecan = nameOfDecan;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
-    public void addKafedra(Kafedra el) {
-        arrKafedra.add(el);
+    public void addFaculty(Faculty el) {
+        el.id = arrFaculty.size();
+        arrFaculty.add(el);
     }
 
     @Override
     public void remove(int pos) {
-        arrKafedra.remove(pos);
+        arrFaculty.remove(pos);
     }
 
     @Override
     public void changeName(int pos, String newName) {
-        arrKafedra.get(pos).setName(newName);
+        arrFaculty.get(pos).setNameFaculty(newName);
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for(int i = 0; i < arrFaculty.size(); ++i)
+            s += arrFaculty.get(i).nameFaculty + "\n";
+
+        return s;
     }
 }
