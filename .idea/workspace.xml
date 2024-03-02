@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baec2b03-8543-48db-84e7-6200fc50eea5" name="Changes" comment="Изменения в иерархии классов. Можно добавлять факультеты и кафедры...&#10;розробимо меню">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="baec2b03-8543-48db-84e7-6200fc50eea5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +35,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="5e3df84d-fc2d-4535-bcff-b9d5ff5d4cd7" />
+        <option name="accountId" value="26e2c23a-298f-4b34-8846-281f300e7347" />
         <option name="url" value="https://github.com/DogNer/laba.git" />
       </UrlAndAccount>
     </option>
@@ -115,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708897630743</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Изменения в иерархии классов. Можно добавлять факультеты и кафедры...&#10;розробимо меню">
+      <option name="closed" value="true" />
+      <created>1709379396425</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709379396425</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
