@@ -1,12 +1,11 @@
 package Interfaces;
 
 import People.Student;
-import University.Faculty;
 import University.Kafedra;
 
-public interface KafedraRefactor {
-    void addKafedra(Kafedra el);
+public interface StudentInterface {
+    void addKafedra(Student el);
     void remove(int pos);
     void changeName(int pos, String newName);
-    void teacherName(int pos, String newSurname);
+    void changeSurName(int pos, String newSurname);
 }
