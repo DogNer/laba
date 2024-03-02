@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baec2b03-8543-48db-84e7-6200fc50eea5" name="Changes" comment="Изменения в иерархии классов. Можно добавлять факультеты и кафедры">
-      <change afterPath="$PROJECT_DIR$/src/Interfaces/StudentInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tables/DrawTable.java" afterDir="false" />
+    <list default="true" id="baec2b03-8543-48db-84e7-6200fc50eea5" name="Changes" comment="Изменения в иерархии классов. Можно добавлять факультеты и кафедры...&#10;розробимо меню">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaces/FacultyRefactor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/FacultyRefactor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaces/KafedraRefactor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/KafedraRefactor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/People/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tables/FacultyTab.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/University/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/Faculty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/University/Kafedra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/Kafedra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/University/Uni.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,15 +17,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="arina" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,7 +39,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="61eb49b8-00b6-43d5-9e61-6979997d3977" />
+        <option name="accountId" value="5e3df84d-fc2d-4535-bcff-b9d5ff5d4cd7" />
         <option name="url" value="https://github.com/DogNer/laba.git" />
       </UrlAndAccount>
     </option>
@@ -61,25 +52,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dana&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;graalvm-jdk-17&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/Java/laba/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "arina",
+    "jdk.selected.JAVA_MODULE": "graalvm-jdk-17",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "D:/Java/laba/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -90,8 +82,6 @@
       <updated>1708883236422</updated>
       <workItem from="1708883237454" duration="8630000" />
       <workItem from="1708983191228" duration="757000" />
-      <workItem from="1709064632030" duration="9000" />
-      <workItem from="1709071323380" duration="2543000" />
     </task>
     <task id="LOCAL-00001" summary="//try 1">
       <option name="closed" value="true" />
@@ -125,15 +115,7 @@
       <option name="project" value="LOCAL" />
       <updated>1708897630743</updated>
     </task>
-    <task id="LOCAL-00005" summary="Изменения в иерархии классов. Можно добавлять факультеты и кафедры">
-      <option name="closed" value="true" />
-      <created>1709060296591</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1709060296591</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,16 +126,7 @@
     <MESSAGE value="Создали факультеты и собственный arrayList" />
     <MESSAGE value="Сделали добавление, удаление и редактирование имени факультета" />
     <MESSAGE value="Изменения в иерархии классов. Можно добавлять факультеты и кафедры" />
-    <option name="LAST_COMMIT_MESSAGE" value="Изменения в иерархии классов. Можно добавлять факультеты и кафедры" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Изменения в иерархии классов. Можно добавлять факультеты и кафедры...&#10;розробимо меню" />
+    <option name="LAST_COMMIT_MESSAGE" value="Изменения в иерархии классов. Можно добавлять факультеты и кафедры...&#10;розробимо меню" />
   </component>
 </project>
