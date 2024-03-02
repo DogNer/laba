@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 //ghjk
-
+        System.out.println("fghj");
     }
 }
 
