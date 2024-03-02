@@ -16,37 +16,16 @@ import java.util.Scanner;
 import java.util.Scanner;
 
 import java.util.Scanner;
-/*
+
 public class Main {
     public static void main(String[] args) {
-        Uni university = new Uni();
-        Scanner scanner = new Scanner(System.in);
-
-        int choice;
-
-            displayMainMenu();
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    facultyActions(university, scanner);
-                    break;
-                case 2:
-                    kafedraActions(university, scanner);
-                    break;
-                case 3:
-                    studentActions(university, scanner);
-                    break;
-                case 0:
-                    System.out.println("До побачення!");
-                    break;
-                default:
-                    System.out.println("Неправильний вибір. Спробуйте ще раз.");
-            }
+//ghjk
 
     }
+}
 
 
- */
+
    /* private static void displayMainMenu() {
         System.out.println("\nОСНОВНЕ МЕНЮ");
         System.out.println("1 - Дії з факультетом");
