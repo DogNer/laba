@@ -16,7 +16,7 @@ import java.util.Scanner;
 import java.util.Scanner;
 
 import java.util.Scanner;
-
+/*
 public class Main {
     public static void main(String[] args) {
         Uni university = new Uni();
@@ -45,7 +45,9 @@ public class Main {
 
     }
 
-    private static void displayMainMenu() {
+
+ */
+   /* private static void displayMainMenu() {
         System.out.println("\nОСНОВНЕ МЕНЮ");
         System.out.println("1 - Дії з факультетом");
         System.out.println("2 - Дії з кафедрами");
@@ -115,3 +117,5 @@ public class Main {
 }
 
 ///ghjkl
+
+    */
