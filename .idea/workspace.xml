@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="baec2b03-8543-48db-84e7-6200fc50eea5" name="Changes" comment="Изменения в иерархии классов. Можно добавлять факультеты и кафедры">
-      <change afterPath="$PROJECT_DIR$/src/Tables/FacultyTab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Interfaces/StudentInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tables/DrawTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/FacultyRefactor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/FacultyRefactor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/KafedraRefactor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/KafedraRefactor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/People/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/People/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tables/FacultyTab.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/University/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/Faculty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/University/Kafedra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/Kafedra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/University/Uni.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +48,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="5e3df84d-fc2d-4535-bcff-b9d5ff5d4cd7" />
+        <option name="accountId" value="61eb49b8-00b6-43d5-9e61-6979997d3977" />
         <option name="url" value="https://github.com/DogNer/laba.git" />
       </UrlAndAccount>
     </option>
@@ -136,5 +145,15 @@
     <MESSAGE value="Сделали добавление, удаление и редактирование имени факультета" />
     <MESSAGE value="Изменения в иерархии классов. Можно добавлять факультеты и кафедры" />
     <option name="LAST_COMMIT_MESSAGE" value="Изменения в иерархии классов. Можно добавлять факультеты и кафедры" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
