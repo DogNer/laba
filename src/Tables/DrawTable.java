@@ -7,21 +7,22 @@ import java.util.List;
 import static java.lang.Math.max;
 
 public class DrawTable {
-    String[][] object = new String[1000][1000];
-
-    public DrawTable(String[][] object) {
-        this.object = object;
-    }
 
     public DrawTable() {
     }
 
+    /**
+     *
+     * @param n кількість об'єктів в лінії
+     * @param m кількість об'єктів в столбці
+     * @param object
+     */
     public void getTable(int n, int m, String[][] object){
 
         String s = "+";
         List<Integer> colomWidth = new ArrList<>();
         for(int i = 0; i < n; ++i){
-            colomWidth.add(max(longName(i, m), object[0][i].length()));
+            colomWidth.add(max(longName(i, m, object), object[i][0].length()));
             s += writeFinalPart(colomWidth.get(i));
         }
 
@@ -56,7 +57,7 @@ public class DrawTable {
         System.out.println(s);
     }
 
-    private int longName(int n, int m) {
+    private int longName(int n, int m, String[][] object) {
         int etalon = 0;
         for (int i = 0; i <= m; ++i)
             etalon = max(etalon, object[n][i].length());
