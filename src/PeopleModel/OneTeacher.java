@@ -2,38 +2,24 @@ package PeopleModel;
 
 public class OneTeacher extends People{
     String kafedra;
+    String faculty;
     String name;
     String surName;
+    int id = 0;
+
+    public OneTeacher(String name, String surName, String nameFaculty, String nameKafedra) {
+        super(name, surName, nameFaculty, nameKafedra);
+    }
 
     public OneTeacher(String name, String surName) {
-        this.name = name;
-        this.surName = surName;
+        super(name, surName);
     }
 
-    public OneTeacher() {
+    public int getId() {
+        return id;
     }
 
-    public String getKafedra() {
-        return kafedra;
-    }
-
-    public void setKafedra(String kafedra) {
-        this.kafedra = kafedra;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurName() {
-        return surName;
-    }
-
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setId(int id) {
+        this.id = id;
     }
 }

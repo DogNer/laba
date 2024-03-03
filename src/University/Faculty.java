@@ -16,7 +16,10 @@ public class Faculty implements FacultyRefactor{
     private String nameFaculty = "Null";
     private List<Faculty> arrFaculty = new ArrList<>();
     private String[][] arrDataFaculty = new String[4][1000];
-    private int id = 0;
+    private int id = 0, idKafedra = 0;
+
+    private List<Kafedra> listKafedra = new ArrList<>();
+    private String[][] dataKafedraList = new String[10][1000];
 
     public Faculty(String nameFaculty) {
         this.nameFaculty = nameFaculty;
@@ -61,62 +64,88 @@ public class Faculty implements FacultyRefactor{
         this.id = id;
     }
 
+    public List<Kafedra> getListKafedra() {
+        return listKafedra;
+    }
+
+    public void setListKafedra(List<Kafedra> listKafedra) {
+        this.listKafedra = listKafedra;
+    }
+
+    public String[][] getDataKafedraList() {
+        return dataKafedraList;
+    }
+
+    public void setDataKafedraList(String[][] dataKafedraList) {
+        this.dataKafedraList = dataKafedraList;
+    }
+
     @Override
     public void addFaculty(Faculty el) {
         id++;
         el.setId(id);
         arrFaculty.add(el);
-
-        arrDataFaculty[0][0] = "id";
-        arrDataFaculty[1][0] = "Name";
-
-        arrDataFaculty[0][id] = id + "";
-        arrDataFaculty[1][id] = el.nameFaculty;
     }
 
     @Override
     public void removeFaculty(int pos) {
         arrFaculty.remove(pos-1);
         id--;
-        moveArrToDelete(pos);
-    }
 
-    private void moveArrToDelete(int pos){
-        for(int i = 1 ; i < 2; ++i)
-            for(int j = pos; j <= arrFaculty.size(); ++j)
-                arrDataFaculty[i][j] = arrDataFaculty[i][j + 1];
+        for(int i = 0; i < arrFaculty.size(); ++i)
+            arrFaculty.get(i).setId(i + 1);
     }
 
     @Override
-    public void changeName(int pos, String newName, Kafedra kf) {
+    public void changeName(int pos, String newName) {
         String oldName = arrFaculty.get(pos - 1).getNameFaculty();
 
         arrFaculty.get(pos - 1).setNameFaculty(newName);
-        arrDataFaculty[1][pos] = newName;
 
-        changeNameOnKafedra(oldName, newName, kf);
-        changeNameInData(oldName, newName, kf);
+        for(int i = 0; i < arrFaculty.get(pos - 1).getListKafedra().size(); ++i)
+            if (oldName.equals(arrFaculty.get(pos - 1).getListKafedra().get(i).getNameFaculty()))
+                arrFaculty.get(pos - 1).getListKafedra().get(i).setNameFaculty(newName);
+
+        for(int i = 0; i < arrFaculty.get(pos - 1).getListKafedra().size(); ++i)
+            for(int j = 0; j < arrFaculty.get(pos - 1).getListKafedra().get(i).getStList().size(); ++j)
+                if (oldName.equals(arrFaculty.get(pos - 1).getListKafedra().get(i).getStList().get(j).getNameFaculty()))
+                    arrFaculty.get(pos - 1).getListKafedra().get(i).getStList().get(j).setNameFaculty(newName);
+
+        for(int i = 0; i < arrFaculty.get(pos - 1).getListKafedra().size(); ++i)
+            for(int j = 0; j < arrFaculty.get(pos - 1).getListKafedra().get(i).getTcList().size(); ++j)
+                if (oldName.equals(arrFaculty.get(pos - 1).getListKafedra().get(i).getTcList().get(j).getNameFaculty()))
+                    arrFaculty.get(pos - 1).getListKafedra().get(i).getTcList().get(j).setNameFaculty(newName);
     }
 
-    //змінює назву кафедри у списку
-    private void changeNameOnKafedra(String oldname, String newName, Kafedra kf){
-        for(int i = 0; i < kf.getArrKafedra().size(); ++i)
-            if (kf.getArrKafedra().get(i).getNameFaculty().equals(oldname))
-                kf.getArrKafedra().get(i).setNameFaculty(newName);
+    @Override
+    public void addKafedra(Kafedra kf) {
+        idKafedra++;
+        kf.setId(idKafedra);
+        listKafedra.add(kf);
     }
 
-    private void changeNameInData(String oldname, String newName, Kafedra kf){
-        for (int j = 0; j <= kf.getArrKafedra().size(); ++j)
-            if (kf.getArrData()[2][j].equals(oldname))
-                kf.getArrData()[2][j] = newName;
+    @Override
+    public void removeKafedra(int indexFac, int pos) {
+        listKafedra.remove(pos-1);
+        idKafedra--;
+
+        for(int i = 0; i < listKafedra.size(); ++i)
+            listKafedra.get(i).setId(i + 1);
     }
 
-    private static void outputAAArr(String[][] arr, int n, int m){
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j)
-                System.out.print(arr[i][j] + " ");
-            System.out.println();
-        }
+    @Override
+    public void changeNameKafedra(int pos, String newName) {
+        String oldName = listKafedra.get(pos - 1).getNameKaf();
+
+        listKafedra.get(pos - 1).setNameKaf(newName);
+
+        for (int i = 0; i < listKafedra.get(pos - 1).getStList().size(); ++i)
+            if (oldName.equals(listKafedra.get(pos - 1).getStList().get(i).getNameKafedra()))
+                listKafedra.get(pos - 1).getStList().get(i).setNameKafedra(newName);
+
+        for (int i = 0; i < listKafedra.get(pos - 1).getTcList().size(); ++i)
+            if (oldName.equals(listKafedra.get(pos - 1).getTcList().get(i).getNameKafedra()))
+                listKafedra.get(pos - 1).getTcList().get(i).setNameKafedra(newName);
     }
 
     @Override

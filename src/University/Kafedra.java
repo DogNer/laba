@@ -1,15 +1,18 @@
 package University;
 
 import Interfaces.KafedraRefactor;
+import Interfaces.PeopleInterface;
 import Models.ArrList;
+import PeopleModel.OneStudent;
+import PeopleModel.OneTeacher;
 
 import java.util.List;
 
-public class Kafedra extends Faculty implements KafedraRefactor{
+public class Kafedra extends Faculty implements PeopleInterface {
     private String nameKaf;
-    private int id = 0;
-    private List<Kafedra> arrKafedra = new ArrList<>();
-    private String[][] arrData = new String[10][1000];
+    private int idSt = 0, idTch = 0;
+    private List<OneStudent> stList = new ArrList<>();
+    private List<OneTeacher> tcList = new ArrList<>();
 
     public Kafedra(String nameFaculty, String nameKaf) {
         super(nameFaculty);
@@ -31,94 +34,63 @@ public class Kafedra extends Faculty implements KafedraRefactor{
         this.nameKaf = nameKaf;
     }
 
-    public int getId() {
-        return id;
+    public List<OneStudent> getStList() {
+        return stList;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStList(List<OneStudent> stList) {
+        this.stList = stList;
     }
 
-    public List<Kafedra> getArrKafedra() {
-        return arrKafedra;
+    public List<OneTeacher> getTcList() {
+        return tcList;
     }
 
-    public void setArrKafedra(List<Kafedra> arrKafedra) {
-        this.arrKafedra = arrKafedra;
-    }
-
-    public String[][] getArrData() {
-        return arrData;
-    }
-
-    public void setArrData(String[][] arrData) {
-        this.arrData = arrData;
+    public void setTcList(List<OneTeacher> tcList) {
+        this.tcList = tcList;
     }
 
     @Override
-    public void addKafedra(Kafedra el) {
-        id++;
-        el.setId(id);
-        arrKafedra.add(el);
-
-        arrData[0][0] = "id";
-        arrData[1][0] = "Кафедра";
-        arrData[2][0] = "Факултет";
-
-        arrData[0][id] = id + "";
-        arrData[1][id] = el.nameKaf;
-        arrData[2][id] = el.getNameFaculty();
+    public void addStudent(OneStudent st) {
+        idSt++;
+        st.setId(idSt);
+        stList.add(st);
     }
 
     @Override
-    public void remove(int pos) {
-        arrKafedra.remove(pos-1);
-        id--;
-        moveArrToDelete(pos);
+    public void addTeacher(OneTeacher tch) {
+        idTch++;
+        tch.setId(idTch);
+        tcList.add(tch);
     }
-
-    private void moveArrToDelete(int pos){
-        for(int i = 1; i < 3; ++i)
-            for(int j = pos; j <= arrKafedra.size(); ++j) {
-                arrData[i][j] = arrData[i][j + 1];
-            }
-    }
-
 
     @Override
-    public void changeName(int pos, String newName) {
-        arrKafedra.get(pos - 1).setNameFaculty(newName);
-        arrData[1][pos] = newName;
+    public void removeSt(int pos) {
+        stList.remove(pos-1);
+        idSt--;
+
+        for(int i = 0; i < stList.size(); ++i)
+            stList.get(i).setId(i + 1);
     }
 
-    /**
-     * Створюємо нову таблицю з існуючої, для однієї конкретної кафедри
-     * @param nameFaculty
-     * @return
-     */
-    public String[][] formTableCondition(String nameFaculty){
-        String[][] tmp;
-        int cnt = 0;
+    @Override
+    public void removeTeacher(int pos) {
+        tcList.remove(pos-1);
+        idTch--;
 
-        for(int j = 0; j <= arrKafedra.size(); ++j) {
-            if (nameFaculty.equals(arrData[2][j])) {
-                cnt++;
-            }
-        }
+        for(int i = 0; i < tcList.size(); ++i)
+            tcList.get(i).setId(i + 1);
+    }
 
-        tmp = new String[3][cnt + 1];
-        cnt = 0;
-        tmp[0][0] = "id";
-        tmp[1][0] = "Кафедра";
-        tmp[2][0] = "Факултет";
+    @Override
+    public void changeNameStudent(int pos, OneStudent st) {
+        stList.get(pos - 1).setName(st.getName());
+        stList.get(pos - 1).setSurName(st.getSurName());
+    }
 
-        for(int j = 0; j <= arrKafedra.size(); ++j) {
-            if (nameFaculty.equals(arrData[2][j])) {
-                cnt++;
-                for (int i = 0; i < 3; ++i)
-                    tmp[i][cnt] = arrData[i][j];
-            }
-        }
-        return tmp;
+    @Override
+    public void changeNameTeacher(int pos, OneTeacher tch) {
+        tcList.get(pos - 1).setName(tch.getName());
+        tcList.get(pos - 1).setSurName(tch.getSurName());
     }
 }

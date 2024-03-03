@@ -1,10 +1,14 @@
 package University;
 
 import Input.DataInput;
+import OutputData.OutputAllStudent;
+import PeopleModel.OneStudent;
+import PeopleModel.OneTeacher;
 import Search.FindInFaculty;
-import Tables.DrawTable;
-import University.Faculty;
-import University.Kafedra;
+import Tables.DrawTableFaculty;
+import Tables.DrawTableKafedra;
+import Tables.DrawTablePeople;
+import Tables.DrawTableTeacher;
 
 import java.io.IOException;
 
@@ -13,8 +17,12 @@ public class UniversityMenu {
     public Faculty faculty = new Faculty();
     public Kafedra departure = new Kafedra();
 
-    DrawTable table = new DrawTable();
+    //DrawTableFaculty table = new DrawTableFaculty();
 
+    DrawTableKafedra tableKaf = new DrawTableKafedra();
+    DrawTableFaculty tableFac = new DrawTableFaculty();
+    DrawTablePeople tableStudent = new DrawTablePeople();
+    DrawTableTeacher tableTeacher = new DrawTableTeacher();
     public void runMenu() throws IOException {
         int choice;
         do {
@@ -51,12 +59,12 @@ public class UniversityMenu {
             case 3:
                 editFaculty();
                 break;
-            /*case 4:
+            case 4:
                 searchFaculty();
                 break;
             case 5:
                 displayFaculty();
-                break;*/
+                break;
             case 6:
                 System.out.println("До побачення!");
                 break;
@@ -65,12 +73,16 @@ public class UniversityMenu {
         }
     }
 
+
+
     // Метод для створення факультету
     private void createFaculty() throws IOException {
         System.out.println("Створення факультету...");
         System.out.println("Введіть назву факультету, який бажаєте створити: ");
         String facultyName = dataInput.getString();
-        faculty.addFaculty(new Faculty(facultyName)); // Додати новий факультет з порожнім списком кафедр
+
+        faculty.addFaculty(new Faculty(facultyName));
+
         System.out.println("Факультет з назвою \"" + facultyName + "\" успішно створено.");
         backToMainMenu();
     }
@@ -78,8 +90,9 @@ public class UniversityMenu {
     // Метод для видалення факультету
     private void deleteFaculty() throws IOException {
         System.out.println("Видалення факультету...");
-        table.getTable(2, faculty.getArrFaculty().size(), faculty.getArrDataFaculty());
+        //table.getTable(2, faculty.getArrFaculty().size(), faculty.getArrDataFaculty());
 
+        tableFac.getTable(faculty.getArrFaculty());
         int choice = dataInput.getInt("Виберіть факультет для видалення: ");
         if (choice > 0 && choice <= faculty.getArrFaculty().size()) {
             String nameDelete = faculty.getArrFaculty().get(choice - 1).getNameFaculty();
@@ -94,14 +107,14 @@ public class UniversityMenu {
     // Метод для редагування факультету
     private void editFaculty() throws IOException {
         System.out.println("Редагування факультету...");
-        table.getTable(2, faculty.getArrFaculty().size(), faculty.getArrDataFaculty());
+        //table.getTable(2, faculty.getArrFaculty().size(), faculty.getArrDataFaculty());
 
+        tableFac.getTable(faculty.getArrFaculty());
         int choice = dataInput.getInt("Виберіть факультет для редагування: ");
         if (choice > 0 && choice <= faculty.getArrFaculty().size()) {
-            int chooseId = faculty.getArrFaculty().get(choice - 1).getId();
-            editFacultyOptions(chooseId - 1);
-        } else System.out.println("Неправильний вибір факультету.");
-        backToMainMenu();
+            editFacultyOptions(choice);
+        }
+        else System.out.println("Неправильний вибір факультету.");
     }
 
     // Метод для вибору опцій редагування факультету
@@ -111,6 +124,7 @@ public class UniversityMenu {
         System.out.println("2. Створити кафедру");
         System.out.println("3. Видалити кафедру");
         System.out.println("4. Редагувати кафедру");
+        System.out.println("5. Назад");
         int choice = dataInput.getInt("Виберіть опцію: ");
         switch (choice) {
             case 1:
@@ -122,9 +136,12 @@ public class UniversityMenu {
             case 3:
                 deleteDepartment(id);
                 break;
-            /*case 4:
-                editDepartment(facultyName);
-                break;*/
+            case 4:
+                editDepartment(id);
+                break;
+            case 5:
+                backToMainMenu();
+                break;
             default:
                 System.out.println("Неправильний вибір опції.");
         }
@@ -133,13 +150,14 @@ public class UniversityMenu {
     // Метод для зміни назви факультету
     private void changeFacultyName(int id) throws IOException {
         System.out.println("Зміна назви факультету...");
-        System.out.println("Поточна назва факультету: " + faculty.getArrFaculty().get(id).getNameFaculty());
+        System.out.println("Поточна назва факультету: " + faculty.getArrFaculty().get(id - 1).getNameFaculty());
         System.out.println("Введіть нову назву факультету ");
         String newFacultyName = dataInput.getString();
         if (!newFacultyName.isEmpty()) {
-            faculty.changeName(id + 1, newFacultyName, departure); // Замінити назву факультету в мапі
+            faculty.changeName(id, newFacultyName); // Замінити назву факультету в мапі
             System.out.println("Назва факультету успішно змінена на \"" + newFacultyName + "\".");
         } else System.out.println("Неправильний вибір факультету.");
+        editFacultyOptions(id);
     }
 
     // Метод для створення кафедри
@@ -147,123 +165,208 @@ public class UniversityMenu {
         System.out.println("Створення кафедри...");
         String departmentName = dataInput.getString("Введіть назву кафедри: ");
 
-        departure.addKafedra(new Kafedra(faculty.getArrFaculty().get(id).getNameFaculty(), departmentName));
-        System.out.println("Кафедра \"" + departmentName + "\" на факультеті \"" + faculty.getArrFaculty().get(id).getNameFaculty() + "\" успішно створена.");
-        table.getTable(3, departure.getArrKafedra().size(), departure.getArrData());
+        faculty.getArrFaculty().get(id - 1).addKafedra(new Kafedra(faculty.getArrFaculty().get(id - 1).getNameFaculty(), departmentName));
+        tableKaf.getTable(faculty.getArrFaculty().get(id - 1).getListKafedra());
+        System.out.println("Кафедра \"" + departmentName + "\" на факультеті \""
+                + faculty.getArrFaculty().get(id - 1).getNameFaculty() + "\" успішно створена.");
+
+        editFacultyOptions(id);
     }
 
     // Метод для видалення кафедри
-    public void deleteDepartment(int id) throws IOException {
+    public void deleteDepartment(int idFculty) throws IOException {
         System.out.println("Видалення кафедри...");
         System.out.println("Оберіть кафедру для видалення:");
 
-        String[][] arr = departure.formTableCondition(departure.getArrKafedra().get(id).getNameFaculty());
-        table.getTable(3, arr[0].length - 1, arr);
+        //table.getTable(3, faculty.getArrFaculty().get(idFculty).getListKafedra().size(), faculty.getArrFaculty().get(idFculty).getDataKafedraList());
 
+        tableKaf.getTable(faculty.getArrFaculty().get(idFculty - 1).getListKafedra());
         int choice = dataInput.getInt("Виберіть кафедру для видалення: ");
-        if (choice > 0 && choice <= departure.getArrKafedra().size()) {
-            String deletedDepartment = departure.getArrKafedra().get(choice - 1).getNameKaf();
-
-            departure.remove(choice);
+        if (choice > 0 && choice <= faculty.getArrFaculty().get(idFculty - 1).getListKafedra().size()) {
+            String deletedDepartment = faculty.getArrFaculty().get(idFculty - 1).getListKafedra().get(choice - 1).getNameKaf();
+            faculty.getArrFaculty().get(idFculty - 1).removeKafedra(idFculty, choice);
 
             System.out.println(
                     "Кафедра \""
                             + deletedDepartment
                             + "\" на факультеті \""
-                            + departure.getArrKafedra().get(id).getNameFaculty()
+                            + faculty.getArrFaculty().get(idFculty - 1).getNameFaculty()
                             + "\" успішно видалена.");
         } else System.out.println("Неправильний вибір кафедри.");
+        editFacultyOptions(idFculty);
     }
 
     // Метод для редагування кафедри
-    /*private void editDepartment(String facultyName) throws IOException {
+    private void editDepartment(int id) throws IOException {
         System.out.println("Редагування кафедри...");
         System.out.println("Оберіть кафедру для редагування:");
-        List<String> departments = faculties.get(facultyName);
-        for (int i = 0; i < departments.size(); i++) {
-            System.out.println((i + 1) + ". " + departments.get(i));
-        }
+
+        tableKaf.getTable(faculty.getArrFaculty().get(id - 1).getListKafedra());
+
         int departmentChoice = dataInput.getInt("Виберіть кафедру для редагування: ");
-        if (departmentChoice < 1 || departmentChoice > departments.size()) {
+        if (departmentChoice < 1 || departmentChoice > faculty.getArrFaculty().get(id - 1).getListKafedra().size()) {
             System.out.println("Неправильний вибір кафедри.");
             return;
         }
-        String selectedDepartment = departments.get(departmentChoice - 1);
+
+        String selectedDepartment = faculty.getArrFaculty().get(id - 1)
+                .getListKafedra().get(departmentChoice - 1).getNameKaf();
+
         System.out.println("Обрана кафедра: " + selectedDepartment);
         int option;
         do {
             System.out.println("Оберіть опцію:");
             System.out.println("1. Змінити назву кафедри");
-            System.out.println("2. Додати студента/студентку");
-            System.out.println("3. Видалити студента/студентку");
-            System.out.println("4. Редагувати викладача");
-            System.out.println("5. Повернутися назад");
+            System.out.println("2. Додати студента");
+            System.out.println("3. Додати викладача");
+            System.out.println("4. Видалити студента");
+            System.out.println("5. Видалити викладача");
+            System.out.println("6. Редагування студента");
+            System.out.println("7. Редагування викладача");
+            System.out.println("8. Повернутися назад");
             option = dataInput.getInt("Виберіть опцію: ");
             switch (option) {
                 case 1:
-                    changeDepartmentName(facultyName, selectedDepartment);
+                    changeDepartmentName(id, departmentChoice);
                     break;
                 case 2:
-                    addStudentToDepartment(facultyName, selectedDepartment);
+                    addStudentToDepartment(id, departmentChoice);
                     break;
                 case 3:
-                    deleteStudentFromDepartment(facultyName, selectedDepartment);
+                    addTeacherToDepartment(id, departmentChoice);
                     break;
                 case 4:
-                    editProfessor(facultyName, selectedDepartment);
+                    deleteStudentFromDepartment(id,  departmentChoice);
                     break;
                 case 5:
+                    deleteTeacherFromDepartment(id, departmentChoice);
+                    break;
+                case 6:
+                    editStudent(id,  departmentChoice);
+                    break;
+                case 7:
+                    editProfessor(id, departmentChoice);
+                    break;
+                case 8:
                     System.out.println("Повернення назад...");
                     break;
                 default:
                     System.out.println("Неправильна опція. Спробуйте ще раз.");
             }
-        } while (option != 5);
+        } while (option != 8);
+        editFacultyOptions(id);
     }
+
     // Метод для зміни назви кафедри
-    private void changeDepartmentName(String facultyName, String departmentName) throws IOException {
+    private void changeDepartmentName(int idFaculty, int idDeparture) throws IOException {
         System.out.println("Зміна назви кафедри...");
         System.out.println("Введіть нову назву кафедри:");
         String newDepartmentName = dataInput.getString();
-        List<String> departments = faculties.get(facultyName);
-        departments.set(departments.indexOf(departmentName), newDepartmentName);
+
+        faculty.getArrFaculty().get(idFaculty - 1).changeNameKafedra(idDeparture, newDepartmentName);
+        tableKaf.getTable(faculty.getArrFaculty().get(idFaculty - 1).getListKafedra());
         System.out.println("Назва кафедри успішно змінена на \"" + newDepartmentName + "\".");
     }
 
     // Метод для додавання студента/студентки до кафедри
-    private void addStudentToDepartment(String facultyName, String departmentName) throws IOException {
-        System.out.println("Додавання студента/студентки...");
-        System.out.println("Введіть ПІБ студента/студентки:");
-        String studentName = dataInput.getString();
-        System.out.println("Введіть курс студента/студентки:");
-        String course = dataInput.getString();
-        System.out.println("Введіть групу студента/студентки:");
-        String group = dataInput.getString();
-        // Операції для додавання студента до кафедри
-        // Це може бути, наприклад, додавання інформації про студента до бази даних
+    private void addStudentToDepartment(int idFaculty, int idDeparture) throws IOException {
+        System.out.println("Додавання студента...");
+        String studentName = dataInput.getString("Введіть ім'я студента:");
+        String studentSurName = dataInput.getString("Введіть прізвище студента:");
+        int course = dataInput.getInt("Введіть курс студента:");
+
+        faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1)
+                .addStudent(new OneStudent(studentName, studentSurName,
+                        faculty.getArrFaculty().get(idFaculty - 1).getNameFaculty(),
+                        faculty.getArrFaculty().get(idFaculty - 1).getListKafedra().get(idDeparture - 1).getNameKaf(),
+                        course));
+
+        tableStudent.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getStList());
+    }
+
+    private void addTeacherToDepartment(int idFaculty, int idDeparture) throws IOException {
+        System.out.println("Додавання викладача...");
+        String studentName = dataInput.getString("Введіть ім'я викладача:");
+        String studentSurName = dataInput.getString("Введіть прізвище викладача:");
+
+        faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1)
+                .addTeacher(new OneTeacher(studentName, studentSurName,
+                        faculty.getArrFaculty().get(idFaculty - 1).getNameFaculty(),
+                        faculty.getArrFaculty().get(idFaculty - 1).getListKafedra().get(idDeparture - 1).getNameKaf()));
+
+        tableTeacher.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getTcList());
     }
 
     // Метод для видалення студента/студентки з кафедри
-    private void deleteStudentFromDepartment(String facultyName, String departmentName) throws IOException {
+    private void deleteStudentFromDepartment(int idFaculty, int idDeparture) throws IOException {
         System.out.println("Видалення студента/студентки...");
-        System.out.println("Введіть ПІБ студента/студентки, якого потрібно видалити:");
-        String studentName = dataInput.getString();
-        // Операції для видалення студента з кафедри
-        // Наприклад, видалення інформації про студента з бази даних
+
+        tableStudent.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getStList());
+
+        int studentName = dataInput.getInt("Введіть id студента, якого потрібно видалити:");
+
+        faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).removeSt(studentName);
+
+        tableStudent.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getStList());
+    }
+
+    private void deleteTeacherFromDepartment(int idFaculty, int idDeparture) throws IOException {
+        System.out.println("Видалення студента/студентки...");
+
+        tableTeacher.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getTcList());
+
+        int studentTeacher = dataInput.getInt("Введіть id студента, якого потрібно видалити:");
+
+        faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).removeTeacher(studentTeacher);
+
+        tableTeacher.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getTcList());
     }
 
 
     // Метод для редагування викладача кафедри
-    private void editProfessor(String facultyName, String departmentName) throws IOException {
+    private void editProfessor(int idFaculty, int idDeparture) throws IOException {
         System.out.println("Редагування викладача...");
-        System.out.println("Введіть ПІБ викладача, якого потрібно редагувати:");
-        String professorName = dataInput.getString();
-        System.out.println("Введіть нове ПІБ для викладача:");
-        String newProfessorName = dataInput.getString();
-        // Операції для редагування викладача
-        // Наприклад, оновлення інформації про викладача в базі даних
+
+        tableTeacher.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getTcList());
+
+        int idTeacher = dataInput.getInt("Введіть id викладача, якого потрібно редагувати:");
+        String newname = dataInput.getString("Введіть нове ім'я викладача:");
+        String newSurname = dataInput.getString("Введіть нове прізвище викладача:");
+
+        faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).changeNameTeacher(idTeacher, new OneTeacher(newname, newSurname));
+
+        tableTeacher.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getTcList());
     }
-*/
+
+    private void editStudent(int idFaculty, int idDeparture) throws IOException {
+        System.out.println("Редагування студента...");
+
+        tableStudent.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getStList());
+
+        int idStudent = dataInput.getInt("Введіть id студента, якого потрібно редагувати:");
+        String newname = dataInput.getString("Введіть нове ім'я викладача:");
+        String newSurname = dataInput.getString("Введіть нове прізвище викладача:");
+
+        faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).changeNameStudent(idStudent, new OneStudent(newname, newSurname));
+
+        tableStudent.getTable(faculty.getArrFaculty().get(idFaculty - 1)
+                .getListKafedra().get(idDeparture - 1).getStList());
+    }
 
 
     // Метод для пошуку факультету
@@ -274,18 +377,10 @@ public class UniversityMenu {
         backToMainMenu();
     }
 
-    // Метод для виведення факультету
-    /*private void displayFaculty() throws IOException {
-        System.out.println("Виведення факультету...");
-        for (String faculty : faculties.keySet()) {
-            System.out.println(faculty);
-            List<String> departments = faculties.get(faculty);
-            for (String department : departments) {
-                System.out.println("  - " + department);
-            }
-        }
-        backToMainMenu();
-    }*/
+    private void displayFaculty() {
+        /*OutputAllStudent outputSt = new OutputAllStudent(faculty);
+        outputSt.getSortStudents();*/
+    }
 
     // Метод для повернення назад до головного меню
     private void backToMainMenu() throws IOException {

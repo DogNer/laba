@@ -18,7 +18,7 @@ public class FindInFaculty {
     public void searchKey(String name, String surName, int year){
         boolean checkIsFind = true;
 
-        for(int i = 0; i < arrList.size(); ++i)
+        /*for(int i = 0; i < arrList.size(); ++i)
             if (name.equals(arrList.get(i).getSt().getName())
             && surName.equals(arrList.get(i).getSt().getSurName())
             && year == arrList.get(i).getSt().getYear()){
@@ -32,6 +32,6 @@ public class FindInFaculty {
             }
 
         if(checkIsFind)
-            System.out.println("Нікого не було знайдено.");
+            System.out.println("Нікого не було знайдено.");*/
     }
 }

@@ -4,27 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baec2b03-8543-48db-84e7-6200fc50eea5" name="Changes" comment="создание таблиц">
-      <change afterPath="$PROJECT_DIR$/src/Input/DataInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Interfaces/PeopleInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PeopleModel/OneStudent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PeopleModel/OneTeacher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Search/FindInFaculty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Tables/TableStUni.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/University/PeopleOnCourse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/University/UniversityMenu.java" afterDir="false" />
+    <list default="true" id="baec2b03-8543-48db-84e7-6200fc50eea5" name="Changes" comment="Створення меню">
+      <change afterPath="$PROJECT_DIR$/src/OutputData/OutputAllStudent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OutputData/OutputFaculty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tables/DrawTableKafedra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tables/DrawTablePeople.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tables/DrawTableTeacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interfaces/FacultyRefactor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/FacultyRefactor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaces/KafedraRefactor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/KafedraRefactor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaces/StudentInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/PeopleInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/PeopleInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People/Dekan.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeopleModel/People.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People/Teacher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tables/DrawTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tables/DrawTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/ArrList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/ArrList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeopleModel/OneStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeopleModel/OneStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeopleModel/OneTeacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeopleModel/OneTeacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeopleModel/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeopleModel/People.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Search/FindInFaculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Search/FindInFaculty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tables/DrawTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tables/DrawTableFaculty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tables/TableStUni.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/University/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/Faculty.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/University/Kafedra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/Kafedra.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/University/PeopleOnCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/PeopleOnCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/University/UniversityMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/University/UniversityMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709060296591</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Створення меню">
+      <option name="closed" value="true" />
+      <created>1709463776276</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709463776277</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +185,8 @@
     <MESSAGE value="Сделали добавление, удаление и редактирование имени факультета" />
     <MESSAGE value="Изменения в иерархии классов. Можно добавлять факультеты и кафедры" />
     <MESSAGE value="создание таблиц" />
-    <option name="LAST_COMMIT_MESSAGE" value="создание таблиц" />
+    <MESSAGE value="Створення меню" />
+    <option name="LAST_COMMIT_MESSAGE" value="Створення меню" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

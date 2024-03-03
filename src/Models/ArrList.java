@@ -4,9 +4,9 @@ import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ArrList<E> extends AbstractList<E> {
+public class ArrList<E> extends AbstractList<E> implements Cloneable{
     private int size = 0;
-    private static final int DEFAULT_CAPACITY = 10;
+    private static final int DEFAULT_CAPACITY = 100;
     private Object elements[];
 
     public ArrList() {

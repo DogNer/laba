@@ -1,15 +1,35 @@
 package PeopleModel;
 
-public class OneStudent extends People {
+public class OneStudent extends People implements Cloneable{
+    int id = 0;
     int year = 0;
+    String name = "";
+    String surName = "";
 
-    String name;
-    String surName;
-
-    public OneStudent(String name, String surName, int year) {
+    public OneStudent(String name, String surName, String nameFaculty, String nameKafedra, int year) {
+        super(name, surName, nameFaculty, nameKafedra);
         this.year = year;
-        this.name = name;
-        this.surName = surName;
+    }
+
+    public OneStudent(String name, String surName) {
+        super(name, surName);
+    }
+
+    public OneStudent(String name, String surName, String nameFaculty, String nameKafedra, int id, int year) {
+        super(name, surName, nameFaculty, nameKafedra);
+        this.id = id;
+        this.year = year;
+    }
+
+    public OneStudent() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getYear() {
@@ -20,19 +40,21 @@ public class OneStudent extends People {
         this.year = year;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String toString() {
+        return "OneStudent{" +
+                "year=" + year +
+                ", name='" + getName() + '\'' +
+                ", surName='" + getSurName() + '\'' +
+                ", nameFaculty='" + nameFaculty + '\'' +
+                ", nameKafedra='" + nameKafedra + '\'' +
+                "} " + super.toString();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getSurName() {
-        return surName;
-    }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

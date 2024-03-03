@@ -1,11 +1,15 @@
 package Interfaces;
 
 import PeopleModel.OneStudent;
+import PeopleModel.OneTeacher;
 import University.PeopleOnCourse;
 
 public interface PeopleInterface {
-    void addStudent(PeopleOnCourse st);
-    void addTeacher(PeopleOnCourse tch);
-    void remove(int pos);
-    void changeName(int pos, OneStudent st);
+    void addStudent(OneStudent st);
+    void addTeacher(OneTeacher tch);
+    void removeSt(int pos);
+    void removeTeacher(int pos);
+    void changeNameStudent(int pos, OneStudent st);
+
+    void changeNameTeacher(int pos, OneTeacher tch);
 }
