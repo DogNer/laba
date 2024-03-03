@@ -2,6 +2,7 @@ package University;
 
 import Interfaces.FacultyRefactor;
 import Interfaces.KafedraRefactor;
+import Manager.UniManager;
 import Models.ArrList;
 
 import java.lang.reflect.Type;
@@ -13,33 +14,20 @@ import java.util.Vector;
 public class Faculty implements FacultyRefactor{
 
     private String nameFaculty = "Null";
-    private String nameOfDecan = "Null";
     private List<Faculty> arrFaculty = new ArrList<>();
-    public String[][] arrData = new String[4][1000];
-
+    private String[][] arrDataFaculty = new String[4][1000];
     private int id = 0;
-
-    public Faculty(String nameFaculty, String nameOfDecan) {
-        this.nameFaculty = nameFaculty;
-        this.nameOfDecan = nameOfDecan;
-    }
 
     public Faculty(String nameFaculty) {
         this.nameFaculty = nameFaculty;
     }
 
-    public String[][] getArrData() {
-        return arrData;
+    public String[][] getArrDataFaculty() {
+        return arrDataFaculty;
     }
 
-    public void setArrData(String[][] arrData) {
-        this.arrData = arrData;
-    }
-
-    public Faculty(String nameFaculty, String nameOfDecan, int id) {
-        this.nameFaculty = nameFaculty;
-        this.nameOfDecan = nameOfDecan;
-        this.id = id;
+    public void setArrDataFaculty(String[][] arrDataFaculty) {
+        this.arrDataFaculty = arrDataFaculty;
     }
 
     public Faculty() {
@@ -65,14 +53,6 @@ public class Faculty implements FacultyRefactor{
         this.nameFaculty = nameFaculty;
     }
 
-    public String getNameOfDecan() {
-        return nameOfDecan;
-    }
-
-    public void setNameOfDecan(String nameOfDecan) {
-        this.nameOfDecan = nameOfDecan;
-    }
-
     public int getId() {
         return id;
     }
@@ -83,39 +63,60 @@ public class Faculty implements FacultyRefactor{
 
     @Override
     public void addFaculty(Faculty el) {
+        id++;
+        el.setId(id);
         arrFaculty.add(el);
 
-        arrData[0][0] = "id";
-        arrData[1][0] = "Name";
-        arrData[2][0] = "Decan";
-        id++;
-        arrData[0][id] = id + "";
-        arrData[1][id] = el.nameFaculty;
-        arrData[2][id] = el.nameOfDecan;
+        arrDataFaculty[0][0] = "id";
+        arrDataFaculty[1][0] = "Name";
+
+        arrDataFaculty[0][id] = id + "";
+        arrDataFaculty[1][id] = el.nameFaculty;
     }
 
     @Override
-    public void remove(int pos) {
+    public void removeFaculty(int pos) {
         arrFaculty.remove(pos-1);
+        id--;
         moveArrToDelete(pos);
     }
 
     private void moveArrToDelete(int pos){
-        for(int i = 0 ; i < 3; ++i)
+        for(int i = 1 ; i < 2; ++i)
             for(int j = pos; j <= arrFaculty.size(); ++j)
-                arrData[i][j] = arrData[i][j + 1];
+                arrDataFaculty[i][j] = arrDataFaculty[i][j + 1];
     }
 
     @Override
-    public void changeName(int pos, String newName) {
+    public void changeName(int pos, String newName, Kafedra kf) {
+        String oldName = arrFaculty.get(pos - 1).getNameFaculty();
+
         arrFaculty.get(pos - 1).setNameFaculty(newName);
-        arrData[1][pos] = newName;
+        arrDataFaculty[1][pos] = newName;
+
+        changeNameOnKafedra(oldName, newName, kf);
+        changeNameInData(oldName, newName, kf);
     }
 
-    @Override
-    public void changeDecan(int pos, String newName) {
-        arrFaculty.get(pos - 1).setNameOfDecan(newName);
-        arrData[2][pos] = newName;
+    //змінює назву кафедри у списку
+    private void changeNameOnKafedra(String oldname, String newName, Kafedra kf){
+        for(int i = 0; i < kf.getArrKafedra().size(); ++i)
+            if (kf.getArrKafedra().get(i).getNameFaculty().equals(oldname))
+                kf.getArrKafedra().get(i).setNameFaculty(newName);
+    }
+
+    private void changeNameInData(String oldname, String newName, Kafedra kf){
+        for (int j = 0; j <= kf.getArrKafedra().size(); ++j)
+            if (kf.getArrData()[2][j].equals(oldname))
+                kf.getArrData()[2][j] = newName;
+    }
+
+    private static void outputAAArr(String[][] arr, int n, int m){
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j)
+                System.out.print(arr[i][j] + " ");
+            System.out.println();
+        }
     }
 
     @Override

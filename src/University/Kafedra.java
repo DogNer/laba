@@ -2,59 +2,25 @@ package University;
 
 import Interfaces.KafedraRefactor;
 import Models.ArrList;
-import People.Student;
-import People.Teacher;
-import Tables.DrawTable;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 
 public class Kafedra extends Faculty implements KafedraRefactor{
-    private Teacher tch;
-    private int numberOfSudents;
     private String nameKaf;
     private int id = 0;
     private List<Kafedra> arrKafedra = new ArrList<>();
-    public String[][] arrData = new String[4][1000];
+    private String[][] arrData = new String[10][1000];
 
-    DrawTable dw = new DrawTable();
-
-    public Kafedra(String nameFaculty, String nameKaf, Teacher tch) {
+    public Kafedra(String nameFaculty, String nameKaf) {
         super(nameFaculty);
-        this.tch = tch;
         this.nameKaf = nameKaf;
+    }
 
+    public Kafedra(String nameKaf) {
+        this.nameKaf = nameKaf;
     }
 
     public Kafedra() {
-    }
-
-    @Override
-    public void addKafedra(Kafedra el) {
-        arrKafedra.add(el);
-
-        arrData[0][0] = "id";
-        arrData[1][0] = "Name";
-        id++;
-        arrData[0][id] = id + "";
-        arrData[1][id] = el.nameKaf;
-        arrData[2][id] = el.tch.getKafedra();
-    }
-
-    public Teacher getTch() {
-        return tch;
-    }
-
-    public void setTch(Teacher tch) {
-        this.tch = tch;
-    }
-
-    public int getNumberOfSudents() {
-        return numberOfSudents;
-    }
-
-    public void setNumberOfSudents(int numberOfSudents) {
-        this.numberOfSudents = numberOfSudents;
     }
 
     public String getNameKaf() {
@@ -90,25 +56,69 @@ public class Kafedra extends Faculty implements KafedraRefactor{
     }
 
     @Override
+    public void addKafedra(Kafedra el) {
+        id++;
+        el.setId(id);
+        arrKafedra.add(el);
+
+        arrData[0][0] = "id";
+        arrData[1][0] = "Кафедра";
+        arrData[2][0] = "Факултет";
+
+        arrData[0][id] = id + "";
+        arrData[1][id] = el.nameKaf;
+        arrData[2][id] = el.getNameFaculty();
+    }
+
+    @Override
     public void remove(int pos) {
         arrKafedra.remove(pos-1);
+        id--;
         moveArrToDelete(pos);
     }
 
     private void moveArrToDelete(int pos){
-        for(int i = 0 ; i < 2 ; ++i)
-            for(int j = pos; j <= arrKafedra.size(); ++j)
+        for(int i = 1; i < 3; ++i)
+            for(int j = pos; j <= arrKafedra.size(); ++j) {
                 arrData[i][j] = arrData[i][j + 1];
+            }
     }
 
 
     @Override
     public void changeName(int pos, String newName) {
-
+        arrKafedra.get(pos - 1).setNameFaculty(newName);
+        arrData[1][pos] = newName;
     }
 
-    @Override
-    public void teacherName(int pos, String newSurname) {
+    /**
+     * Створюємо нову таблицю з існуючої, для однієї конкретної кафедри
+     * @param nameFaculty
+     * @return
+     */
+    public String[][] formTableCondition(String nameFaculty){
+        String[][] tmp;
+        int cnt = 0;
 
+        for(int j = 0; j <= arrKafedra.size(); ++j) {
+            if (nameFaculty.equals(arrData[2][j])) {
+                cnt++;
+            }
+        }
+
+        tmp = new String[3][cnt + 1];
+        cnt = 0;
+        tmp[0][0] = "id";
+        tmp[1][0] = "Кафедра";
+        tmp[2][0] = "Факултет";
+
+        for(int j = 0; j <= arrKafedra.size(); ++j) {
+            if (nameFaculty.equals(arrData[2][j])) {
+                cnt++;
+                for (int i = 0; i < 3; ++i)
+                    tmp[i][cnt] = arrData[i][j];
+            }
+        }
+        return tmp;
     }
 }
